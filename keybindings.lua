@@ -79,11 +79,11 @@ globalkeys = awful.util.table.join(
 )
 
 -- Move windows to left workspace (tags)
--- XXX: Assumes 9 tags. 
+-- XXX: Assumes 5 tags. 
 function move_window_prev_tag(c)
 	local curidx = awful.tag.getidx(c:tags()[1])
 	if curidx == 1 then
-		c:tags({screen[mouse.screen]:tags()[9]})
+		c:tags({screen[mouse.screen]:tags()[5]})
 	else
 		c:tags({screen[mouse.screen]:tags()[curidx - 1]})
 	end
@@ -91,10 +91,10 @@ function move_window_prev_tag(c)
 end
 
 -- Move windows to right workspace (tags)
--- XXX: Assumes 9 tags. 
+-- XXX: Assumes 5 tags. 
 function move_window_next_tag(c)
 	local curidx = awful.tag.getidx(c:tags()[1])
-	if curidx == 9 then
+	if curidx == 5 then
 		c:tags({screen[mouse.screen]:tags()[1]})
 	else
 		c:tags({screen[mouse.screen]:tags()[curidx + 1]})
@@ -129,45 +129,45 @@ clientkeys = awful.util.table.join(
     --    end),
 
 	-- Move windows to left/right workspaces (tags)
-	-- XXX: Assumes 9 tags. 
+	-- XXX: Assumes 5 tags. 
 	awful.key({ modkey, "Control"	}, "Left",  move_window_prev_tag),
 	awful.key({ modkey, "Control"	}, "Right", move_window_next_tag)
 )
 
--- Compute the maximum number of digit we need, limited to 9
+-- Compute the maximum number of digit we need, limited to 5
 keynumber = 0
 for s = 1, screen.count() do
-   keynumber = math.min(9, math.max(#tags[s], keynumber));
+   keynumber = math.min(5, math.max(#tags[s], keynumber));
 end
 
 -- Bind all key numbers to tags.
 -- Be careful: we use keycodes to make it works on any keyboard layout.
--- This should map on the top row of your keyboard, usually 1 to 9.
+-- This should map on the top row of your keyboard, usually 1 to 5.
 for i = 1, keynumber do
     globalkeys = awful.util.table.join(globalkeys,
 
 
-        awful.key({ modkey }, "#" .. i + 9,
+        awful.key({ modkey }, "#" .. i + 5,
                   function ()
                         local screen = mouse.screen
                         if tags[screen][i] then
                             awful.tag.viewonly(tags[screen][i])
                         end
                   end),
-        awful.key({ modkey, "Control" }, "#" .. i + 9,
+        awful.key({ modkey, "Control" }, "#" .. i + 5,
                   function ()
                       local screen = mouse.screen
                       if tags[screen][i] then
                           awful.tag.viewtoggle(tags[screen][i])
                       end
                   end),
-        awful.key({ modkey, "Shift" }, "#" .. i + 9,
+        awful.key({ modkey, "Shift" }, "#" .. i + 5,
                   function ()
                       if client.focus and tags[client.focus.screen][i] then
                           awful.client.movetotag(tags[client.focus.screen][i])
                       end
                   end),
-        awful.key({ modkey, "Control", "Shift" }, "#" .. i + 9,
+        awful.key({ modkey, "Control", "Shift" }, "#" .. i + 5,
                   function ()
                       if client.focus and tags[client.focus.screen][i] then
                           awful.client.toggletag(tags[client.focus.screen][i])
