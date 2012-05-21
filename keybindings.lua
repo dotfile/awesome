@@ -1,5 +1,5 @@
 -- AWESOME WINDOW MANAGER
--- KEY BINDINGS 
+-- KEY AND MOUSE BINDINGS 
 
 -- {{{ Mouse bindings
 root.buttons(awful.util.table.join(
@@ -13,7 +13,7 @@ root.buttons(awful.util.table.join(
 globalkeys = awful.util.table.join(
 
 	-- Lock screen
-	awful.key({ modkey , "Control" }, "l", 
+	awful.key({ modkey , "Control", "Shift" }, "l", 
 		function(c) awful.util.spawn("xlock") end),
 
 	awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
@@ -30,7 +30,8 @@ globalkeys = awful.util.table.join(
             awful.client.focus.byidx(-1)
             if client.focus then client.focus:raise() end
         end),
-    awful.key({ modkey,           }, "w", function () mymainmenu:show({keygrabber=true}) end),
+	
+    --awful.key({ modkey,           }, "w", function () mymainmenu:show({keygrabber=true}) end),
 
     -- Layout manipulation
     awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end),
@@ -51,6 +52,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Control" }, "r", awesome.restart),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit),
 
+	-- XXX: I need to get very familiar with these. 
     awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)    end),
     awful.key({ modkey,           }, "h",     function () awful.tag.incmwfact(-0.05)    end),
     awful.key({ modkey, "Shift"   }, "h",     function () awful.tag.incnmaster( 1)      end),
@@ -60,18 +62,20 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "space", function () awful.layout.inc(layouts,  1) end),
     awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(layouts, -1) end),
 
-    awful.key({ modkey, "Control" }, "n", awful.client.restore),
+	-- Not sure what this one does...
+    --awful.key({ modkey, "Control" }, "n", awful.client.restore),
 
     -- Prompt
-    awful.key({ modkey },            "r",     function () mypromptbox[mouse.screen]:run() end),
+    awful.key({ modkey },            "r",     function () mypromptbox[mouse.screen]:run() end)
 
-    awful.key({ modkey }, "x",
-              function ()
-                  awful.prompt.run({ prompt = "Run Lua code: " },
-                  mypromptbox[mouse.screen].widget,
-                  awful.util.eval, nil,
-                  awful.util.getdir("cache") .. "/history_eval")
-              end)
+	-- No need to evalulate Lua code 
+    --awful.key({ modkey }, "x",
+    --          function ()
+    --              awful.prompt.run({ prompt = "Run Lua code: " },
+    --              mypromptbox[mouse.screen].widget,
+    --              awful.util.eval, nil,
+    --              awful.util.getdir("cache") .. "/history_eval")
+    --          end)
 )
 
 -- Move windows to left workspace (tags)
@@ -98,25 +102,31 @@ function move_window_next_tag(c)
 	awful.tag.viewnext()
 end
 
+-- Kill a window 
+function kill_window(c) c:kill() end
+
 clientkeys = awful.util.table.join(
-    awful.key({ modkey,           }, "f",      function (c) c.fullscreen = not c.fullscreen  end),
-    awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()                         end),
-    awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ),
-    awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end),
-    awful.key({ modkey,           }, "o",      awful.client.movetoscreen                        ),
-    awful.key({ modkey, "Shift"   }, "r",      function (c) c:redraw()                       end),
-    awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end),
-    awful.key({ modkey,           }, "n",
+	-- Toggle fullscreen 
+    awful.key({ modkey,          }, "f",     function (c) c.fullscreen = not c.fullscreen  end),
+    awful.key({ modkey, "Shift"  }, "c",     kill_window),
+    awful.key({ modkey, "Control"}, "c",     kill_window),
+    awful.key({ modkey, "Control"}, "space", awful.client.floating.toggle                     ),
+    awful.key({ modkey, "Control"}, "Return",function (c) c:swap(awful.client.getmaster()) end),
+    awful.key({ modkey,          }, "o",     awful.client.movetoscreen                        ),
+    awful.key({ modkey, "Shift"  }, "r",     function (c) c:redraw()                       end),
+    awful.key({ modkey,          }, "t",     function (c) c.ontop = not c.ontop            end),
+    awful.key({ modkey,          }, "n",
         function (c)
             -- The client currently has the input focus, so it cannot be
             -- minimized, since minimized clients can't have the focus.
             c.minimized = true
         end),
-    awful.key({ modkey,           }, "m",
-        function (c)
-            c.maximized_horizontal = not c.maximized_horizontal
-            c.maximized_vertical   = not c.maximized_vertical
-        end),
+	-- No need to 'maximize' when I can fullscreen. 
+    --awful.key({ modkey,           }, "m",
+    --    function (c)
+    --        c.maximized_horizontal = not c.maximized_horizontal
+    --        c.maximized_vertical   = not c.maximized_vertical
+    --    end),
 
 	-- Move windows to left/right workspaces (tags)
 	-- XXX: Assumes 9 tags. 
