@@ -92,7 +92,27 @@ clientkeys = awful.util.table.join(
         function (c)
             c.maximized_horizontal = not c.maximized_horizontal
             c.maximized_vertical   = not c.maximized_vertical
-        end)
+        end),
+
+	-- Move windows to left/right workspaces
+	awful.key({ modkey, "Shift"   }, ",",
+		function (c)
+			local curidx = awful.tag.getidx(c:tags()[1])
+			if curidx == 1 then
+				c:tags({screen[mouse.screen]:tags()[9]})
+			else
+				c:tags({screen[mouse.screen]:tags()[curidx - 1]})
+			end
+		end),
+	awful.key({ modkey, "Shift"   }, ".",
+	  function (c)
+			local curidx = awful.tag.getidx(c:tags()[1])
+			if curidx == 9 then
+				c:tags({screen[mouse.screen]:tags()[1]})
+			else
+				c:tags({screen[mouse.screen]:tags()[curidx + 1]})
+			end
+		end)
 )
 
 -- Compute the maximum number of digit we need, limited to 9
@@ -106,6 +126,8 @@ end
 -- This should map on the top row of your keyboard, usually 1 to 9.
 for i = 1, keynumber do
     globalkeys = awful.util.table.join(globalkeys,
+
+
         awful.key({ modkey }, "#" .. i + 9,
                   function ()
                         local screen = mouse.screen
