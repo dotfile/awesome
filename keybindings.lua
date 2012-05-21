@@ -11,6 +11,11 @@ root.buttons(awful.util.table.join(
 
 -- {{{ Key bindings
 globalkeys = awful.util.table.join(
+
+	-- Lock screen
+	awful.key({ modkey , "Control" }, "l", 
+		function(c) awful.util.spawn("xlock") end),
+
 	awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
 	awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
 	awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
@@ -137,5 +142,7 @@ clientbuttons = awful.util.table.join(
 -- Set keys
 root.keys(globalkeys)
 -- }}}
+
+-- Custom keymaps
 
 

@@ -11,7 +11,6 @@ Brandon's Awesome Window Manager Config
   I'm currently running v3.4.10 under Ubuntu 11.10, and I need to port my 
   old configurations, find out what is new, etc. 
 * I'm going to try to match the vim zenburn and/or lucius2 color schemes. 
-* Need to get rid of gaps between windows. 
 * I need to figure out what to use for:
 	* Compositor 
 	* Power indicator 

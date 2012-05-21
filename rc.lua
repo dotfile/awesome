@@ -32,7 +32,7 @@ layouts =
     awful.layout.suit.tile.top,
     awful.layout.suit.fair, 
     awful.layout.suit.spiral.dwindle,
-    awful.layout.suit.max.fullscreen,
+    --awful.layout.suit.max.fullscreen, Meta+f does this anyway
     --awful.layout.suit.fair.horizontal,
     --awful.layout.suit.floating, -- No different from max.fullscreen?
     --awful.layout.suit.max, -- Why bother showing top menu? 
