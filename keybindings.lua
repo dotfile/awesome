@@ -74,6 +74,30 @@ globalkeys = awful.util.table.join(
               end)
 )
 
+-- Move windows to left workspace (tags)
+-- XXX: Assumes 9 tags. 
+function move_window_prev_tag(c)
+	local curidx = awful.tag.getidx(c:tags()[1])
+	if curidx == 1 then
+		c:tags({screen[mouse.screen]:tags()[9]})
+	else
+		c:tags({screen[mouse.screen]:tags()[curidx - 1]})
+	end
+	awful.tag.viewprev()
+end
+
+-- Move windows to right workspace (tags)
+-- XXX: Assumes 9 tags. 
+function move_window_next_tag(c)
+	local curidx = awful.tag.getidx(c:tags()[1])
+	if curidx == 9 then
+		c:tags({screen[mouse.screen]:tags()[1]})
+	else
+		c:tags({screen[mouse.screen]:tags()[curidx + 1]})
+	end
+	awful.tag.viewnext()
+end
+
 clientkeys = awful.util.table.join(
     awful.key({ modkey,           }, "f",      function (c) c.fullscreen = not c.fullscreen  end),
     awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()                         end),
@@ -94,25 +118,10 @@ clientkeys = awful.util.table.join(
             c.maximized_vertical   = not c.maximized_vertical
         end),
 
-	-- Move windows to left/right workspaces
-	awful.key({ modkey, "Shift"   }, ",",
-		function (c)
-			local curidx = awful.tag.getidx(c:tags()[1])
-			if curidx == 1 then
-				c:tags({screen[mouse.screen]:tags()[9]})
-			else
-				c:tags({screen[mouse.screen]:tags()[curidx - 1]})
-			end
-		end),
-	awful.key({ modkey, "Shift"   }, ".",
-	  function (c)
-			local curidx = awful.tag.getidx(c:tags()[1])
-			if curidx == 9 then
-				c:tags({screen[mouse.screen]:tags()[1]})
-			else
-				c:tags({screen[mouse.screen]:tags()[curidx + 1]})
-			end
-		end)
+	-- Move windows to left/right workspaces (tags)
+	-- XXX: Assumes 9 tags. 
+	awful.key({ modkey, "Control"	}, "Left",  move_window_prev_tag),
+	awful.key({ modkey, "Control"	}, "Right", move_window_next_tag)
 )
 
 -- Compute the maximum number of digit we need, limited to 9
