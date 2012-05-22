@@ -21,7 +21,7 @@ Brandon's Awesome Window Manager Config
 
 **Links** 
 
-* [https://github.com/echelon/dotfiles-bash](Bash configuration)
-* [https://github.com/echelon/dotfiles-vim](Vim configuration)
-* [https://github.com/echelon/dotfiles-awesome](Awesome WM configuration)
+* [Bash configuration](https://github.com/echelon/dotfiles-bash)
+* [Vim configuration](https://github.com/echelon/dotfiles-vim)
+* [Awesome WM configuration](https://github.com/echelon/dotfiles-awesome)
 
