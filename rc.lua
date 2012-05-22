@@ -63,7 +63,7 @@ mysystray = widget({ type = "systray" })
 -- Define icons
 beautiful.widget_bat = confdir .. "/themes/icons/zenburn-bat.png"
 
--- TODO: Battery indicator
+-- Battery indicator
 require("vicious")
 baticon = widget({ type = "imagebox" })
 baticon.image = image(beautiful.widget_bat)
