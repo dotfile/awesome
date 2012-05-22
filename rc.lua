@@ -14,6 +14,7 @@ require("debian.menu")
 beautiful.init("/home/brandon/.config/awesome/themes/zenburn/theme.lua")
 
 local home = os.getenv("HOME")
+confdir = awful.util.getdir("config")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "urxvt"
@@ -58,6 +59,16 @@ mytextclock = awful.widget.textclock({ align = "right" })
 
 -- Create a systray
 mysystray = widget({ type = "systray" })
+
+-- Define icons
+beautiful.widget_bat = confdir .. "/themes/icons/zenburn-bat.png"
+
+-- TODO: Battery indicator
+require("vicious")
+baticon = widget({ type = "imagebox" })
+baticon.image = image(beautiful.widget_bat)
+battext = widget({ type = "textbox", name = "battext" })
+vicious.register(battext, vicious.widgets.bat, "$2% ", 61, "BAT1")
 
 -- Create a wibox for each screen and add it
 mywibox = {}
@@ -136,6 +147,9 @@ for s = 1, screen.count() do
         mylayoutbox[s],
         mytextclock,
         s == 1 and mysystray or nil,
+		-- Battery
+		battext,
+		baticon,
         mytasklist[s],
         layout = awful.widget.layout.horizontal.rightleft
     }
