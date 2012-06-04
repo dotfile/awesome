@@ -1,10 +1,13 @@
-Brandon's Awesome Window Manager Config
----------------------------------------
+Awesome Window Manager Config
+-----------------------------
 
 **Notes on my configs**
 
-* Defaults to urxvt and vim. 
+* Zenburn color scheme
+* Defaults to _urxvt_ and _vim_. 
 * Current window is highlighted by red border.
+* Windows are gapless
+* Battery indicator
 
 **Status / TODO** 
 * I haven't run awesome in over two years;
