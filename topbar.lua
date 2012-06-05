@@ -13,7 +13,19 @@ require("vicious")
 baticon = widget({ type = "imagebox" })
 baticon.image = image(beautiful.widget_bat)
 battext = widget({ type = "textbox", name = "battext" })
-vicious.register(battext, vicious.widgets.bat, "$2% ", 61, "BAT1")
+
+function battery_status_text(widget, args)
+	local perc = args[2]
+	if perc < 15 then
+		return '<span color="red">' .. perc .. '%</span> '
+	elseif perc < 50 then
+		return '<span color="yellow">' .. perc .. '%</span> '
+	end
+	return '<span color="#8EAE6E">' .. perc .. '%</span> '
+end
+
+--vicious.register(battext, vicious.widgets.bat, "$2% ", 61, "BAT1")
+vicious.register(battext, vicious.widgets.bat, battery_status_text, 61, "BAT1")
 
 -- Create a wibox for each screen and add it
 mywibox = {}
