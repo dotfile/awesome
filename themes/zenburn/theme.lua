@@ -8,7 +8,7 @@
 
 -- {{{ Main
 theme = {}
-theme.wallpaper_cmd = { "awsetbg -f /home/brandon/Images/wallaper/Ireland.jpg" }
+--theme.wallpaper_cmd = { "awsetbg -f /home/brandon/Images/wallaper/Ireland.jpg" }
 -- }}}
 
 -- {{{ Styles

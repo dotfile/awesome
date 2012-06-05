@@ -13,13 +13,22 @@ require("debian.menu")
 -- Themes define colours, icons, and wallpapers
 beautiful.init("/home/brandon/.config/awesome/themes/zenburn/theme.lua")
 
-local home = os.getenv("HOME")
+
 confdir = awful.util.getdir("config")
 
 -- This is used later as the default terminal and editor to run.
+local home = os.getenv("HOME")
+
 terminal = "urxvt"
 editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
+wallpaper_dir = home .. "/Images/wallpaper" 
+
+-- From tony's github repo 'awesome-config'
+-- TODO: Read it in full, it has great examples. 
+local wallpaper_cmd = "find " .. wallpaper_dir 
+	.. " -type f -name '*.jpg'  -print0 | shuf -n1 -z | " 
+	.. "xargs -0 feh --bg-scale"
 
 -- Default modkey.
 modkey = "Mod4"
@@ -109,3 +118,36 @@ end)
 client.add_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.add_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
+
+
+-- Wallpaper timer
+-- Again, from tony's repo
+x = 0
+mytimer = timer { timeout = x }
+mytimer:add_signal("timeout", function()
+	-- Wallpaper randomization timers
+	-- TODO: Move to config options above.
+	local min = 5 * 60
+	local max = 15 * 60
+
+	-- Randomly choose wallpaper
+	--[[ -- File exists check fails for some unknown reason. 
+	if file_exists(wallpaper_dir) and whereis_app('feh') then
+		battext.text = "File exists"
+		os.execute(wallpaper_cmd)
+	end
+	--]]
+	os.execute(wallpaper_cmd)
+
+	-- Stop timer (so no multiple instances running)
+	mytimer:stop()
+
+	-- Interval for new wallpaper
+	x = math.random(min, max)
+
+	mytimer.timeout = x
+	mytimer:start()
+end)
+
+mytimer:start()
+
