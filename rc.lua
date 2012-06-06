@@ -20,6 +20,7 @@ confdir = awful.util.getdir("config")
 local home = os.getenv("HOME")
 
 terminal = "urxvt"
+browser  = "chromium-browser"
 editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
 wallpaper_dir = home .. "/Images/wallpaper" 

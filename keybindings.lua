@@ -9,6 +9,22 @@ root.buttons(awful.util.table.join(
 ))
 -- }}}
 
+-- Switch to the next client
+function switch_client_next()
+	awful.client.focus.byidx( 1)
+	if client.focus then client.focus:raise() end
+end
+
+-- Switch to the previous client
+function switch_client_prev()
+	awful.client.focus.byidx(-1)
+	if client.focus then client.focus:raise() end
+end
+
+-- Move client (window) around
+function move_client_next() awful.client.swap.byidx(1) end
+function move_client_prev() awful.client.swap.byidx(-1) end
+
 -- {{{ Key bindings
 globalkeys = awful.util.table.join(
 
@@ -25,36 +41,29 @@ globalkeys = awful.util.table.join(
 	---
 	awful.key({ modkey, }, "Left",   awful.tag.viewprev       ),
 	awful.key({ modkey, }, "Right",  awful.tag.viewnext       ),
-	awful.key({ modkey, }, "Escape", awful.tag.history.restore),
+	--awful.key({ modkey, }, "Escape", awful.tag.history.restore), -- ???
 
 	---
 	--- Switch Between Windows: Mod+j, Mod+k
 	---
-	awful.key({ modkey, }, "j",
-        function ()
-            awful.client.focus.byidx( 1)
-            if client.focus then client.focus:raise() end
-        end),
-
-    awful.key({ modkey, }, "k",
-        function ()
-            awful.client.focus.byidx(-1)
-            if client.focus then client.focus:raise() end
-        end),
+	awful.key({ modkey, }, "j", switch_client_next),
+    awful.key({ modkey, }, "k", switch_client_prev),
 	
-    --awful.key({ modkey,           }, "w", function () mymainmenu:show({keygrabber=true}) end),
+    --awful.key({ modkey, }, "w", function () mymainmenu:show({keygrabber=true}) end),
 
     -- Layout manipulation
 
 	---
-	--- Move Window Around Layout: Mod+j, Mod+k
+	--- Move Window Around Layout: Mod+Shift+j, Mod+Shift+k
 	---
-    awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end),
-    awful.key({ modkey, "Shift"   }, "k", function () awful.client.swap.byidx( -1)    end),
+    awful.key({ modkey, "Shift"   }, "j", move_client_next),
+    awful.key({ modkey, "Control" }, "j", move_client_next),
+	awful.key({ modkey, "Shift"   }, "k", move_client_prev),
+    awful.key({ modkey, "Control" }, "k", move_client_prev),
 
 	--- XXX: ???
-    awful.key({ modkey, "Control" }, "j", function () awful.screen.focus_relative( 1) end),
-    awful.key({ modkey, "Control" }, "k", function () awful.screen.focus_relative(-1) end),
+    --awful.key({ modkey, "Control" }, "j", function () awful.screen.focus_relative( 1) end),
+    --awful.key({ modkey, "Control" }, "k", function () awful.screen.focus_relative(-1) end),
     awful.key({ modkey,           }, "u", awful.client.urgent.jumpto),
     awful.key({ modkey,           }, "Tab",
         function ()
@@ -64,22 +73,28 @@ globalkeys = awful.util.table.join(
             end
         end),
 
-    -- Standard program
-    awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
+    -- Launch Programs
+    awful.key({ modkey, }, "Return", function () 
+		awful.util.spawn(terminal) end),
+
+    awful.key({ modkey, "Control" }, "Return", function () 
+		awful.util.spawn(browser) end),
+
+	-- Standard Program
     awful.key({ modkey, "Control" }, "r", awesome.restart),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit),
 
 	---
 	--- Change Pane Size: Mod+h, Mod+l
 	---
-    awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)    end),
-    awful.key({ modkey,           }, "h",     function () awful.tag.incmwfact(-0.05)    end),
+    awful.key({ modkey, }, "l", function () awful.tag.incmwfact( 0.05) end),
+    awful.key({ modkey, }, "h", function () awful.tag.incmwfact(-0.05) end),
 
 	-- XXX: These are weird. They change the layout itself. 
-    --awful.key({ modkey, "Shift"   }, "h",     function () awful.tag.incnmaster( 1)      end),
-    --awful.key({ modkey, "Shift"   }, "l",     function () awful.tag.incnmaster(-1)      end),
-    --awful.key({ modkey, "Control" }, "h",     function () awful.tag.incncol( 1)         end),
-    --awful.key({ modkey, "Control" }, "l",     function () awful.tag.incncol(-1)         end),
+    --awful.key({ modkey, "Shift"   }, "h", function () awful.tag.incnmaster( 1) end),
+    --awful.key({ modkey, "Shift"   }, "l", function () awful.tag.incnmaster(-1) end),
+    --awful.key({ modkey, "Control" }, "h", function () awful.tag.incncol( 1)    end),
+    --awful.key({ modkey, "Control" }, "l", function () awful.tag.incncol(-1)    end),
 
 	-- Cycle through layouts
     awful.key({ modkey, }, "space", function () 
@@ -155,12 +170,13 @@ clientkeys = awful.util.table.join(
     awful.key({ modkey,          }, "f",     function (c) c.fullscreen = not c.fullscreen  end),
 
 	-- Kill window
-    awful.key({ modkey, "Shift"  }, "c",     kill_window),
-    awful.key({ modkey, "Control"}, "c",     kill_window),
+    awful.key({ modkey, "Shift"  }, "c", kill_window),
+    awful.key({ modkey, "Control"}, "c", kill_window),
 
     --awful.key({ modkey, "Control"}, "space", awful.client.floating.toggle              ),
-    --awful.key({ modkey, "Control"}, "Return",function (c) c:swap(awful.client.getmaster()) end),
-    --awful.key({ modkey,          }, "o",     awful.client.movetoscreen                        ),
+    --awful.key({modkey, "Control"},"Return",function (c) c:swap(awful.client.getmaster()) end),
+    --awful.key({ modkey,}, "o",     awful.client.movetoscreen                        ),
+
     awful.key({ modkey, "Shift"  }, "r",     function (c) c:redraw()                       end),
     awful.key({ modkey,          }, "t",     function (c) c.ontop = not c.ontop            end),
     awful.key({ modkey,          }, "n",
