@@ -24,6 +24,11 @@ function battery_status_text(widget, args)
 	return '<span color="#8EAE6E">' .. perc .. '%</span> '
 end
 
+-- Debug by placing a message in the battery text.
+function debug(text)
+	battext.text = text
+end
+
 --vicious.register(battext, vicious.widgets.bat, "$2% ", 61, "BAT1")
 vicious.register(battext, vicious.widgets.bat, battery_status_text, 61, "BAT1")
 

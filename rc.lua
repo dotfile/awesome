@@ -38,9 +38,9 @@ modkey = "Mod4"
 -- Table of layouts to cover with awful.layout.inc, order matters.
 layouts =
 {
+    awful.layout.suit.fair, 
     awful.layout.suit.tile,
     awful.layout.suit.tile.top,
-    awful.layout.suit.fair, 
     awful.layout.suit.spiral.dwindle,
     --awful.layout.suit.max.fullscreen, Meta+f does this anyway
     --awful.layout.suit.fair.horizontal,
