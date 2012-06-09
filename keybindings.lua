@@ -144,13 +144,6 @@ clientkeys = awful.util.table.join(
     awful.key({ modkey, }, "t", function (c) 
 		c.ontop = not c.ontop end),
 
-    awful.key({ modkey, }, "n",
-        function (c)
-            -- The client currently has the input focus, so it cannot be
-            -- minimized, since minimized clients can't have the focus.
-            c.minimized = true
-        end),
-	
 	-- Move windows to left/right workspaces (tags)
 	-- XXX: Assumes 5 tags. 
 	awful.key({ modkey, "Control"	}, "Left",  move_window_prev_tag),
