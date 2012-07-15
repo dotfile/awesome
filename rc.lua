@@ -31,6 +31,18 @@ local wallpaper_cmd = "find " .. wallpaper_dir
 	.. " -type f -name '*.jpg'  -print0 | shuf -n1 -z | " 
 	.. "xargs -0 feh --bg-scale"
 
+
+-- Spawn these processes
+do
+	local cmds = { 
+		"gnome-sound-applet",
+		"if [ $(pidof nm-applet | wc -w) -eq 0 ]; then nm-applet; fi",
+	}
+	for _,i in pairs(cmds) do
+		awful.util.spawn_with_shell(i)
+	end
+end
+
 -- Default modkey.
 modkey = "Mod4"
 
