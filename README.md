@@ -22,9 +22,9 @@ Awesome Window Manager Config
 	* Tag creation / management 
 	* PDF reader replacement 
 
-**Links** 
+**My other dotfiles and configs** 
 
 * [Bash configuration](https://github.com/echelon/dotfiles-bash)
 * [Vim configuration](https://github.com/echelon/dotfiles-vim)
-* [Awesome WM configuration](https://github.com/echelon/dotfiles-awesome)
+* [AwesomeWM configuration](https://github.com/echelon/dotfiles-awesome)
 
