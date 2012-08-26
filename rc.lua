@@ -1,29 +1,31 @@
--- Standard awesome library
-require("awful")
+require("awful") -- Standard awesome library
 require("awful.autofocus")
 require("awful.rules")
--- Theme handling library
-require("beautiful")
--- Notification library
-require("naughty")
+require("beautiful") -- Theme handling library
+require("naughty") -- Notification library
+require("debian.menu") -- Load Debian menu entries
 
--- Load Debian menu entries
-require("debian.menu")
+-- Error handling
+require("error")
+
+-- XXX: Requires socket library installed
+socket = require("socket")
+
+-- Globals
+HOSTNAME = socket.dns.gethostname()
+HOMEDIR  = os.getenv("HOME")
+CONFDIR  = awful.util.getdir("config")
 
 -- Themes define colours, icons, and wallpapers
-beautiful.init("/home/brandon/.config/awesome/themes/zenburn/theme.lua")
+--beautiful.init("/usr/share/awesome/themes/zenburn/theme.lua")
+beautiful.init(CONFDIR .. "/themes/zenburn/theme.lua") -- XXX
 
-
-confdir = awful.util.getdir("config")
-
--- This is used later as the default terminal and editor to run.
-local home = os.getenv("HOME")
 
 terminal = "urxvt"
 browser  = "chromium-browser"
 editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
-wallpaper_dir = home .. "/Images/wallpaper" 
+wallpaper_dir = HOMEDIR .. "/Images/wallpaper" 
 
 -- From tony's github repo 'awesome-config'
 -- TODO: Read it in full, it has great examples. 
@@ -31,6 +33,7 @@ local wallpaper_cmd = "find " .. wallpaper_dir
 	.. " -type f -name '*.jpg'  -print0 | shuf -n1 -z | " 
 	.. "xargs -0 feh --bg-scale"
 
+os.execute(wallpaper_cmd) -- XXX: Testing only
 
 -- Spawn these processes
 do

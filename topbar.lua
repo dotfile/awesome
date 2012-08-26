@@ -6,7 +6,7 @@ mytextclock = awful.widget.textclock({ align = "right" })
 mysystray = widget({ type = "systray" })
 
 -- Define icons
-beautiful.widget_bat = confdir .. "/themes/icons/zenburn-bat.png"
+beautiful.widget_bat = CONFDIR .. "/themes/icons/zenburn-bat.png"
 
 -- Battery indicator
 require("vicious")
@@ -29,8 +29,17 @@ function debug(text)
 	battext.text = text
 end
 
+-- BAT0 on vaio, BAT1 on thinkpad
 --vicious.register(battext, vicious.widgets.bat, "$2% ", 61, "BAT1")
-vicious.register(battext, vicious.widgets.bat, battery_status_text, 61, "BAT1")
+if HOSTNAME == 'vaiop' then
+	vicious.register(battext, 
+			vicious.widgets.bat, battery_status_text, 61, "BAT0")
+else
+	vicious.register(battext, 
+			vicious.widgets.bat, battery_status_text, 61, "BAT1")
+end
+
+
 
 -- Create a wibox for each screen and add it
 mywibox = {}
