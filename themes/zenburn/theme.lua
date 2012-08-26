@@ -10,13 +10,17 @@
 
 -- {{{ Main
 theme = {}
---theme.wallpaper_cmd = { "awsetbg /usr/share/awesome/themes/zenburn/zenburn-background.png" }
 theme.wallpaper_cmd = { "" }
 -- }}}
 
 -- {{{ Styles
---theme.font      = "sans 8"
-theme.font      = "bitstream vera sans 11" -- XXX
+if HOSTNAME == 'vaiop' then
+	--theme.font = "bitstream vera sans 11"
+	theme.font = "ubuntu 12"
+else
+	theme.font = "bitstream vera sans 9"
+end
+
 
 -- {{{ Colors
 theme.fg_normal = "#DCDCCC"
@@ -31,7 +35,7 @@ theme.bg_urgent = "#3F3F3F"
 theme.border_width  = "2"
 theme.border_normal = "#3F3F3F"
 --theme.border_focus  = "#6F6F6F"
-theme.border_focus  = "#A50000" -- XXX
+theme.border_focus  = "#A50000" -- XXX RED HIGHLIGHT
 theme.border_marked = "#CC9393"
 -- }}}
 

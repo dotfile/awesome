@@ -15,11 +15,11 @@ socket = require("socket")
 HOSTNAME = socket.dns.gethostname()
 HOMEDIR  = os.getenv("HOME")
 CONFDIR  = awful.util.getdir("config")
+modkey   = "Mod4"
 
 -- Themes define colours, icons, and wallpapers
 --beautiful.init("/usr/share/awesome/themes/zenburn/theme.lua")
 beautiful.init(CONFDIR .. "/themes/zenburn/theme.lua") -- XXX
-
 
 terminal = "urxvt"
 browser  = "chromium-browser"
@@ -27,13 +27,12 @@ editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
 wallpaper_dir = HOMEDIR .. "/Images/wallpaper" 
 
+
 -- From tony's github repo 'awesome-config'
 -- TODO: Read it in full, it has great examples. 
 local wallpaper_cmd = "find " .. wallpaper_dir 
 	.. " -type f -name '*.jpg'  -print0 | shuf -n1 -z | " 
 	.. "xargs -0 feh --bg-scale"
-
-os.execute(wallpaper_cmd) -- XXX: Testing only
 
 -- Spawn these processes
 do
@@ -46,25 +45,15 @@ do
 	end
 end
 
--- Default modkey.
-modkey = "Mod4"
 
--- Set wallapaper
-
--- Table of layouts to cover with awful.layout.inc, order matters.
+-- Table of layouts. 
+-- Order matters for awful.layout.inc; removed frivolous ones.
 layouts =
 {
     awful.layout.suit.tile,
     awful.layout.suit.fair, 
     awful.layout.suit.tile.top,
     awful.layout.suit.spiral.dwindle,
-    --awful.layout.suit.max.fullscreen, Meta+f does this anyway
-    --awful.layout.suit.fair.horizontal,
-    --awful.layout.suit.floating, -- No different from max.fullscreen?
-    --awful.layout.suit.max, -- Why bother showing top menu? 
-    --awful.layout.suit.tile.bottom, -- Not bad, but redundant vs tile.top.
-    --awful.layout.suit.spiral, -- sim to spiral.dwindle, but uglier
-    --awful.layout.suit.magnifier -- Useless to put window in center
 }
 
 -- {{{ Tags
