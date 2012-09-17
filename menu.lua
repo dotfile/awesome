@@ -1,16 +1,12 @@
 -- AWESOME WINDOW MANAGER
 -- MENU
 
-myawesomemenu = {
-   { "manual", TERMINAL .. " -e man awesome" },
-   { "restart", awesome.restart },
-   { "quit", awesome.quit }
-}
-
+-- There's really no need for a menu, but I'll keep it for now
 mymainmenu = awful.menu({ 
 	items = {
-		{ "awesome", myawesomemenu, beautiful.awesome_icon },
-		{ "open terminal", TERMINAL }
+		{ "open terminal", TERMINAL },
+   		{ "restart awm", awesome.restart },
+   		{ "quit", awesome.quit }
 	}
 })
 
