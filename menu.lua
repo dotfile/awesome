@@ -2,7 +2,7 @@
 -- MENU
 
 myawesomemenu = {
-   { "manual", terminal .. " -e man awesome" },
+   { "manual", TERMINAL .. " -e man awesome" },
    { "restart", awesome.restart },
    { "quit", awesome.quit }
 }
@@ -10,7 +10,7 @@ myawesomemenu = {
 mymainmenu = awful.menu({ 
 	items = {
 		{ "awesome", myawesomemenu, beautiful.awesome_icon },
-		{ "open terminal", terminal }
+		{ "open terminal", TERMINAL }
 	}
 })
 

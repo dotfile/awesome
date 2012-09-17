@@ -14,14 +14,16 @@ baticon = widget({ type = "imagebox" })
 baticon.image = image(beautiful.widget_bat)
 battext = widget({ type = "textbox", name = "battext" })
 
+-- Battery indicator coloring
 function battery_status_text(widget, args)
 	local perc = args[2]
+	local color = beautiful.status_fg_good
 	if perc < 15 then
-		return '<span color="red">' .. perc .. '%</span> '
+		color = beautiful.status_fg_bad
 	elseif perc < 50 then
-		return '<span color="yellow">' .. perc .. '%</span> '
+		color = beautiful.status_fg_okay
 	end
-	return '<span color="#8EAE6E">' .. perc .. '%</span> '
+	return '<span color="'..color..'">'..perc..'%</span> '
 end
 
 -- Debug by placing a message in the battery text.
