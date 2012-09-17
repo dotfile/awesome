@@ -15,7 +15,7 @@ socket = require("socket")
 HOSTNAME = socket.dns.gethostname()
 HOMEDIR  = os.getenv("HOME")
 CONFDIR  = awful.util.getdir("config")
-CMD_LOCK = "xlock -mode dclock"
+CMD_LOCK = "xlock -mode rain"
 modkey   = "Mod4"
 
 -- Themes define colours, icons, and wallpapers
