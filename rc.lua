@@ -15,13 +15,15 @@ socket = require("socket")
 HOSTNAME = socket.dns.gethostname()
 HOMEDIR  = os.getenv("HOME")
 CONFDIR  = awful.util.getdir("config")
+CMD_LOCK = "xlock -mode dclock"
 modkey   = "Mod4"
 
 -- Themes define colours, icons, and wallpapers
---beautiful.init("/usr/share/awesome/themes/zenburn/theme.lua")
 beautiful.init(CONFDIR .. "/themes/zenburn/theme.lua") -- XXX
 
 terminal = "urxvt"
+TERMINAL = "urxvt"
+TERMINAL_CWD = "urxvt -cd"
 browser  = "chromium-browser"
 editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
@@ -61,7 +63,7 @@ layouts =
 tags = {}
 for s = 1, screen.count() do
     -- Each screen has its own tag table.
-    tags[s] = awful.tag({ 1, 2, 3, 4, 5 }, s, layouts[1])
+    tags[s] = awful.tag({ 1, 2, 3, 4 }, s, layouts[1])
 end
 -- }}}
 
@@ -69,28 +71,7 @@ end
 require("menu")
 require("topbar")
 require("keybindings")
-
--- {{{ Rules
-awful.rules.rules = {
-    -- All clients will match this rule.
-    { rule = { },
-      properties = { border_width = beautiful.border_width,
-                     border_color = beautiful.border_normal,
-                     focus = true,
-					 size_hints_honor = false, -- XXX: Fix gaps
-                     keys = clientkeys,
-                     buttons = clientbuttons } },
-    { rule = { class = "MPlayer" },
-      properties = { floating = true } },
-    { rule = { class = "pinentry" },
-      properties = { floating = true } },
-    { rule = { class = "gimp" },
-      properties = { floating = true } },
-    -- Set Firefox to always map on tags number 2 of screen 1.
-    -- { rule = { class = "Firefox" },
-    --   properties = { tag = tags[1][2] } },
-}
--- }}}
+require("rules")
 
 -- {{{ Signals
 -- Signal function to execute when a new client appears.
