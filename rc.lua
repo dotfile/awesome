@@ -12,6 +12,7 @@ require("error")
 socket = require("socket")
 
 -- Globals
+AWESOME_NUM_TAGS = 4
 HOSTNAME = socket.dns.gethostname()
 HOMEDIR  = os.getenv("HOME")
 CONFDIR  = awful.util.getdir("config")
@@ -59,11 +60,15 @@ layouts =
 }
 
 -- {{{ Tags
--- Define a tag table which hold all screen tags.
+-- Build a tag table which hold all screen tags.
+-- Each screen has its own tag table.
 tags = {}
 for s = 1, screen.count() do
-    -- Each screen has its own tag table.
-    tags[s] = awful.tag({ 1, 2, 3, 4 }, s, layouts[1])
+	local table = {}
+	for t = 1, AWESOME_NUM_TAGS do
+		table[t] = t
+	end
+    tags[s] = awful.tag(table, s, layouts[1])
 end
 -- }}}
 

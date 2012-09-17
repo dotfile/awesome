@@ -107,11 +107,10 @@ globalkeys = awful.util.table.join(
 )
 
 -- Move windows to left workspace (tags)
--- XXX: Assumes 4 tags. 
 function move_window_prev_tag(c)
 	local curidx = awful.tag.getidx(c:tags()[1])
 	if curidx == 1 then
-		c:tags({screen[mouse.screen]:tags()[4]})
+		c:tags({screen[mouse.screen]:tags()[AWESOME_NUM_TAGS]})
 	else
 		c:tags({screen[mouse.screen]:tags()[curidx - 1]})
 	end
@@ -119,10 +118,9 @@ function move_window_prev_tag(c)
 end
 
 -- Move windows to right workspace (tags)
--- XXX: Assumes 4 tags. 
 function move_window_next_tag(c)
 	local curidx = awful.tag.getidx(c:tags()[1])
-	if curidx == 4 then
+	if curidx == AWESOME_NUM_TAGS then
 		c:tags({screen[mouse.screen]:tags()[1]})
 	else
 		c:tags({screen[mouse.screen]:tags()[curidx + 1]})
@@ -157,15 +155,14 @@ clientkeys = awful.util.table.join(
 		c.ontop = not c.ontop end),
 
 	-- Move windows to left/right workspaces (tags)
-	-- XXX: Assumes 4 tags. 
 	awful.key({ modkey, "Control"	}, "Left",  move_window_prev_tag),
 	awful.key({ modkey, "Control"	}, "Right", move_window_next_tag)
 )
 
--- Compute the maximum number of digit we need, limited to 4
+-- Compute the maximum number of digit we need
 keynumber = 0
 for s = 1, screen.count() do
-   keynumber = math.min(4, math.max(#tags[s], keynumber));
+   keynumber = math.min(AWESOME_NUM_TAGS, math.max(#tags[s], keynumber));
 end
 
 ---
