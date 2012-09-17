@@ -32,6 +32,10 @@ end
 -- (Install this function into client keybindings)
 function open_terminal_same_cwd(client)
 	if not client then
+		client = awful.client.next(0)
+	end
+
+	if not client then
 		awful.util.spawn_with_shell(TERMINAL)
 		return
 	end

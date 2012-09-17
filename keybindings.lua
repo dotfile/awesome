@@ -68,7 +68,8 @@ globalkeys = awful.util.table.join(
 
     -- Launch Programs
     awful.key({ modkey, }, "Return", function () 
-		awful.util.spawn(terminal) end),
+		open_terminal_same_cwd(c) end),
+		--awful.util.spawn(terminal) end),
 
     awful.key({ modkey, "Control" }, "Return", function () 
 		awful.util.spawn(browser) end),
@@ -135,8 +136,9 @@ function kill_window(c) c:kill() end
 clientkeys = awful.util.table.join(
 
 	-- Spawn terminal at location
-    awful.key({ modkey, }, "o", function(c)
-		open_terminal_same_cwd(c) end),
+	-- NOTE: Not necessary anymore w/ global binding
+    --awful.key({ modkey, }, "o", function(c)
+	--	open_terminal_same_cwd(c) end),
 
     --awful.key({ modkey, }, "Return", function () 
 	--	awful.util.spawn(terminal) end),
