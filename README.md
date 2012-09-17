@@ -1,5 +1,5 @@
-Brandon's Awesome Window Manager Config
-=======================================
+Brandon's *Awesome Window Manager* Config
+=========================================
 I'm pretty happy with my ever-evolving Awesome setup. It's got some
 nifty features that I've developed and borrowed. The first thing you'll
 notice is that it's more modular than a single `rc.lua` file. I'm still
