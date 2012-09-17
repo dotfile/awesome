@@ -10,14 +10,14 @@ Some of my changes are opinionated, but it works for me.
 
 Here are some of the better features:
 -------------------------------------
-* Terminals spawn on the *same pwd* as the active client. My 
-  favorite feature.
-* *Greatly simplified AWM experience:* 
+* Terminals spawn on the *same pwd* as the active client. 
+  (My favorite feature.)
+* Greatly simplified AWM experience: 
 	* Only 4 tags, only the useful layouts, etc.
 	* Pared down, and arguably better keybindings 
+* Gapless borders and current window highlight
 * Wallpaper rotation
-* Gapless borders and current window highight
-* Spawns one and only one instance of: 
+* Spawns one, and only one, instance of: 
 	* Battery indicator
 	* Sound applet 
 	* Network manager applet
@@ -33,10 +33,10 @@ Key Bindings
 * **Meta+(h/l)** -- Move the divider dimensions for layout
 * **Meta+Ctrl+l** -- Lock screen with xlock
 * ***Meta+(1/2/3/4)*** -- Switch between layouts! (I feel this is 
-  superior to the default keyd
+  superior to the default keybindings)
 * **Meta+Ctrl+c** -- Kill client
 * **Meta+r** -- Run a command
-* **Meta+Ctrl+r** -- Restart AWM (reloads the configs)
+* **Meta+Ctrl+r** -- Restart AWM (reloading the configs)
 
 *Check `keybindings.lua` for a complete list*
 
@@ -54,5 +54,5 @@ My other dotfiles and configs
 -----------------------------
 * [Bash configuration](https://github.com/echelon/dotfiles-bash)
 * [Vim configuration](https://github.com/echelon/dotfiles-vim)
-* [AwesomeWM configuration](https://github.com/echelon/dotfiles-awesome) *-- quite neat*
+* [AwesomeWM configuration](https://github.com/echelon/dotfiles-awesome) *&mdash; quite neat*
 
