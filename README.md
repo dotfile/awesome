@@ -12,6 +12,8 @@ Here are some of the better features:
 -------------------------------------
 * Terminals spawn on the *same pwd* as the active client. 
   (My favorite feature.)
+* Main theme based on *Molokai vim colorscheme* 
+  (It's easy to swap to Zenburn though)
 * Greatly simplified AWM experience: 
 	* Only 4 tags, only the useful layouts, etc.
 	* Pared down, and arguably better keybindings 
@@ -21,6 +23,11 @@ Here are some of the better features:
 	* Battery indicator
 	* Sound applet 
 	* Network manager applet
+
+Requirements
+------------
+* Lua `socket` library must be installed
+* `feh` is recommended for wallpaper display
 
 Key Bindings
 ------------
@@ -42,7 +49,7 @@ Key Bindings
 
 TODO
 ----
-* New colorschemes: molokai, lucius, ...
+* New colorschemes: lucius, etc ...
 * Dark/light colorscheme switch that propagates to urxvt and vim
 * Better font, topbar, etc. size management for different screen sizes
 * Screenshot keybinding
