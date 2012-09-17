@@ -33,7 +33,8 @@ Key Bindings
 * **Meta+(h/l)** -- Move the divider dimensions for layout
 * **Meta+Ctrl+l** -- Lock screen with xlock
 * ***Meta+(1/2/3/4)*** -- Switch between layouts! (I feel this is 
-  superior to the default keybinding.)
+  superior to the default keyd
+* **Meta+Ctrl+c** -- Kill client
 * **Meta+r** -- Run a command
 * **Meta+Ctrl+r** -- Restart AWM (reloads the configs)
 
