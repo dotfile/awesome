@@ -69,10 +69,9 @@ globalkeys = awful.util.table.join(
     -- Launch Programs
     awful.key({ modkey, }, "Return", function () 
 		open_terminal_same_cwd(c) end),
-		--awful.util.spawn(terminal) end),
 
     awful.key({ modkey, "Control" }, "Return", function () 
-		awful.util.spawn(browser) end),
+		awful.util.spawn(BROWSER) end),
 
 	-- Standard Program
     awful.key({ modkey, "Control" }, "r", awesome.restart),

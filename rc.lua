@@ -5,35 +5,46 @@ require("beautiful") -- Theme handling library
 require("naughty") -- Notification library
 require("debian.menu") -- Load Debian menu entries
 
--- Error handling
+-- Local script: error handling
 require("error")
 
--- XXX: Requires socket library installed
+-- Requires socket library installed!
 socket = require("socket")
 
 -- Globals
 AWESOME_NUM_TAGS = 4
+AWESOME_FONT = '' -- Configured below
+AWESOME_THEME = '/themes/molokai/theme.lua'
+AWESOME_CONFDIR  = awful.util.getdir("config")
+
 HOSTNAME = socket.dns.gethostname()
 HOMEDIR  = os.getenv("HOME")
-CONFDIR  = awful.util.getdir("config")
+CONFDIR  = awful.util.getdir("config") -- TODO: Deprecate
 CMD_LOCK = "xlock -mode rain"
 modkey   = "Mod4"
 
--- Themes define colours, icons, and wallpapers
-beautiful.init(CONFDIR .. "/themes/zenburn/theme.lua") -- XXX
-
-terminal = "urxvt"
 TERMINAL = "urxvt"
 TERMINAL_CWD = "urxvt -cd"
-browser  = "chromium-browser"
-editor = os.getenv("EDITOR") or "vim"
-editor_cmd = terminal .. " -e " .. editor
-wallpaper_dir = HOMEDIR .. "/Images/wallpaper" 
+BROWSER = "chromium-browser"
+EDITOR = os.getenv("EDITOR") or "vim"
+EDITOR_CMD = TERMINAL .. " -e " .. EDITOR
+WALLPAPER_DIR = HOMEDIR .. "/Images/wallpaper" 
 
+-- Per-machine configuration switch
+if HOSTNAME == 'vaiop' then
+	AWESOME_FONT = 'ubuntu 13'
+elseif HOSTNAME == 'x120e' then
+	AWESOME_FONT = 'bitstream vera sans 9'
+else
+	AWESOME_FONT = 'bitstream vera sans 9'
+end
+
+-- Init theme
+beautiful.init(AWESOME_CONFDIR .. AWESOME_THEME)
 
 -- From tony's github repo 'awesome-config'
 -- TODO: Read it in full, it has great examples. 
-local wallpaper_cmd = "find " .. wallpaper_dir 
+local WALLPAPER_CMD = "find " .. WALLPAPER_DIR 
 	.. " -type f -name '*.jpg'  -print0 | shuf -n1 -z | " 
 	.. "xargs -0 feh --bg-scale"
 
@@ -50,7 +61,8 @@ end
 
 
 -- Table of layouts. 
--- Order matters for awful.layout.inc; removed frivolous ones.
+-- Order matters for awful.layout.inc
+-- removed frivolous/redundant ones
 layouts =
 {
     awful.layout.suit.tile,
@@ -59,7 +71,6 @@ layouts =
     awful.layout.suit.spiral.dwindle,
 }
 
--- {{{ Tags
 -- Build a tag table which hold all screen tags.
 -- Each screen has its own tag table.
 tags = {}
@@ -70,7 +81,6 @@ for s = 1, screen.count() do
 	end
     tags[s] = awful.tag(table, s, layouts[1])
 end
--- }}}
 
 -- REQUIRE EXTERNAL CONFIGS
 require("menu")
@@ -128,7 +138,7 @@ mytimer:add_signal("timeout", function()
 		os.execute(wallpaper_cmd)
 	end
 	--]]
-	os.execute(wallpaper_cmd)
+	os.execute(WALLPAPER_CMD)
 
 	-- Stop timer (so no multiple instances running)
 	mytimer:stop()
