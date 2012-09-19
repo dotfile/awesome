@@ -1,16 +1,30 @@
-
 --[[
-
-readlink /proc/$PID/cwd
-
-os.execute()
-awful.util.spawn_with_shell()
-
+Extra Awesome Window Manager Functions
+by Brandon Thomas 
+* echelon@gmail/github
+* http://posbl.org
 ]]--
 
--- Alert with text.
+
+
+-- Determine if battery is charging
+-- FIXME: I don't know AWK very well
+function batt_is_charging()
+	local device = '/org/freedesktop/UPower/devices/battery_BAT0'
+	local cmd = 'upower -i '..device..' | grep state'
+
+	local fp = io.popen(cmd)
+
+	for r in string.gmatch(fp:read(), 'discharging') do
+		return false 
+	end	
+	return true 
+end
+
+
+-- Notification alert with text.
 function alert(text)
-	awful.util.spawn_with_shell("notify-send \"" .. text .. "\"")
+	awful.util.spawn_with_shell('notify-send "'..text..'"')
 end
 
 

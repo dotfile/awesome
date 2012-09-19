@@ -1,3 +1,5 @@
+require('func')
+
 -- {{{ Wibox
 -- Create a textclock widget
 mytextclock = awful.widget.textclock({ align = "right" })
@@ -17,13 +19,22 @@ battext = widget({ type = "textbox", name = "battext" })
 -- Battery indicator coloring
 function battery_status_text(widget, args)
 	local perc = args[2]
+
+	-- color
 	local color = beautiful.status_fg_good
 	if perc < 15 then
 		color = beautiful.status_fg_bad
 	elseif perc < 50 then
 		color = beautiful.status_fg_okay
 	end
-	return '<span color="'..color..'">'..perc..'%</span> '
+
+	-- charge state
+	local ch = ''
+	if batt_is_charging() then
+		ch = '++'
+	end
+
+	return '<span color="'..color..'">'..ch..perc..'%</span> '
 end
 
 -- Debug by placing a message in the battery text.
