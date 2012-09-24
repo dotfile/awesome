@@ -45,8 +45,8 @@ beautiful.init(AWESOME_CONFDIR .. AWESOME_THEME)
 -- From tony's github repo 'awesome-config'
 -- TODO: Read it in full, it has great examples. 
 local WALLPAPER_CMD = "find " .. WALLPAPER_DIR 
-	.. " -type f -name '*.jpg'  -print0 | shuf -n1 -z | " 
-	.. "xargs -0 feh --bg-scale"
+	.. " -type f -regextype posix-extended -iregex '.*(png|jpg)$' -print0 | "
+	.. " | shuf -n1 -z | xargs -0 feh --bg-scale"
 
 -- Spawn one and only one of these processes
 do
