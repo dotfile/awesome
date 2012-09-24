@@ -42,6 +42,7 @@ function process_get_subproc_pid(pid)
 	return fp:read()
 end
 
+
 -- Open a terminal with at the same CWD
 -- (Install this function into client keybindings)
 function open_terminal_same_cwd(client)
