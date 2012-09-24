@@ -1,19 +1,30 @@
-require("awful") -- Standard awesome library
+--
+--	Brandon Thomas' Awesome Window Manager Configs
+--	----------------------------------------------	
+--	Comments, suggestions, and patches are welcome 
+--		* echelon@gmail/github
+--		* http://posbl.org
+--
+
+--[[ ======================================
+			Load Awesome WM Libraries
+	 ====================================== --]]
+
+require("awful")			-- Standard awesome library
 require("awful.autofocus")
 require("awful.rules")
-require("beautiful") -- Theme handling library
-require("naughty") -- Notification library
-require("debian.menu") -- Load Debian menu entries
+require("beautiful")		-- Theme library
+require("naughty")			-- Notification library
+require("error") 			-- Error reporting (local script)
+socket = require("socket")	-- XXX: Requires socket library installed!
 
--- Local script: error handling
-require("error")
 
--- Requires socket library installed!
-socket = require("socket")
+--[[ ======================================
+	   		  AWESOME CONFIGURATION
+	 ====================================== --]]
 
--- Globals
-AWESOME_NUM_TAGS = 4
-AWESOME_FONT = '' -- Configured below
+AWESOME_NUM_TAGS = 5
+AWESOME_FONT = 'bitstream vera sans 10'
 AWESOME_THEME = '/themes/molokai/theme.lua'
 AWESOME_CONFDIR  = awful.util.getdir("config")
 
@@ -30,16 +41,24 @@ EDITOR = os.getenv("EDITOR") or "vim"
 EDITOR_CMD = TERMINAL .. " -e " .. EDITOR
 WALLPAPER_DIR = HOMEDIR .. "/Images/wallpaper" 
 
--- Per-machine configuration switch
+BATTERY_NAME = "BAT0"
+
+
+--[[ ======================================
+	   Per-machine configuration switch
+	 ====================================== --]]
+
 if HOSTNAME == 'vaiop' then
 	AWESOME_FONT = 'ubuntu 13'
 	AWESOME_NUM_TAGS = 4
+
 elseif HOSTNAME == 'x120e' then
-	AWESOME_FONT = 'bitstream vera sans 10'
+	AWESOME_FONT = 'bitstream vera sans 12.5'
 	AWESOME_NUM_TAGS = 5
-else
-	AWESOME_FONT = 'bitstream vera sans 10'
+	BATTERY_NAME = "BAT1"
+
 end
+
 
 -- Init theme
 beautiful.init(AWESOME_CONFDIR .. AWESOME_THEME)

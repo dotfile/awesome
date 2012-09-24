@@ -42,17 +42,9 @@ function debug(text)
 	battext.text = text
 end
 
--- BAT0 on vaio, BAT1 on thinkpad
---vicious.register(battext, vicious.widgets.bat, "$2% ", 61, "BAT1")
-if HOSTNAME == 'vaiop' then
-	vicious.register(battext, 
-			vicious.widgets.bat, battery_status_text, 61, "BAT0")
-else
-	vicious.register(battext, 
-			vicious.widgets.bat, battery_status_text, 61, "BAT1")
-end
-
-
+-- Battery Status
+vicious.register(battext, 
+	vicious.widgets.bat, battery_status_text, 61, BATTERY_NAME)
 
 -- Create a wibox for each screen and add it
 mywibox = {}

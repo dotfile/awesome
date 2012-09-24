@@ -10,7 +10,7 @@ by Brandon Thomas
 -- Determine if battery is charging
 -- FIXME: I don't know AWK very well
 function batt_is_charging()
-	local device = '/org/freedesktop/UPower/devices/battery_BAT0'
+	local device = '/org/freedesktop/UPower/devices/battery_' .. BATTERY_NAME
 	local cmd = 'upower -i '..device..' | grep state'
 
 	local fp = io.popen(cmd)
