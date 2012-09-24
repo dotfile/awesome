@@ -33,10 +33,12 @@ WALLPAPER_DIR = HOMEDIR .. "/Images/wallpaper"
 -- Per-machine configuration switch
 if HOSTNAME == 'vaiop' then
 	AWESOME_FONT = 'ubuntu 13'
+	AWESOME_NUM_TAGS = 4
 elseif HOSTNAME == 'x120e' then
-	AWESOME_FONT = 'bitstream vera sans 9'
+	AWESOME_FONT = 'bitstream vera sans 10'
+	AWESOME_NUM_TAGS = 5
 else
-	AWESOME_FONT = 'bitstream vera sans 9'
+	AWESOME_FONT = 'bitstream vera sans 10'
 end
 
 -- Init theme
