@@ -1,6 +1,28 @@
 require('func')
 
--- {{{ Wibox
+--[[ ======================================
+				  Main Menu
+	 ====================================== --]]
+
+-- There's really no need for a menu, but I'll keep it for now
+mymainmenu = awful.menu({ 
+	items = {
+		{ "open terminal", TERMINAL },
+   		{ "restart awm", awesome.restart },
+   		{ "quit", awesome.quit }
+	}
+})
+
+mylauncher = awful.widget.launcher({ 
+	image = image(beautiful.awesome_icon),
+    menu = mymainmenu 
+})
+
+
+--[[ ======================================
+				    TOP BAR
+	 ====================================== --]]
+
 -- Create a textclock widget
 mytextclock = awful.widget.textclock({ align = "right" })
 
@@ -130,5 +152,4 @@ for s = 1, screen.count() do
         layout = awful.widget.layout.horizontal.rightleft
     }
 end
--- }}}
 

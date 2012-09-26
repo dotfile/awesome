@@ -43,6 +43,7 @@ WALLPAPER_DIR = HOMEDIR .. "/Images/wallpaper"
 
 BATTERY_NAME = "BAT0"
 
+MOUSE_HIDE_TIMEOUT = 10
 
 --[[ ======================================
 	   Per-machine configuration switch
@@ -104,11 +105,44 @@ for s = 1, screen.count() do
 end
 
 -- REQUIRE EXTERNAL CONFIGS
-require("menu")
 require("topbar")
 require("keybindings")
 require("rules")
 require("signals")
+
+-- Last known coordinates of the mouse
+mouseLastCoords = {x=0, y=0}
+
+
+-- Setup mouse hiding timer
+mouseTimer = timer { timeout = MOUSE_HIDE_TIMEOUT }
+mouseTimer:add_signal("timeout", function()
+	local doMove = false
+
+	-- Only move if hasn't been moved much. 
+	local cur = mouse.coords()
+
+	if math.abs(cur.x - mouseLastCoords.x) < 10 
+		and math.abs(cur.y - mouseLastCoords.y) < 10 then
+			move = true
+	end
+
+	mouseLastCoords.x  = cur.x
+	mouseLastCoords.y  = cur.y
+
+	if move then
+		mouse.coords({x=9000, y=9000})
+	end
+
+	-- Stop timer (so no multiple instances running)
+	mouseTimer:stop()
+
+	mouseTimer.timeout = MOUSE_HIDE_TIMEOUT
+	mouseTimer:start()
+end)
+
+mouseTimer:start()
+
 
 -- Wallpaper timer
 -- Again, from tony's repo

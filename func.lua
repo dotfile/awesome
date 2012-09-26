@@ -67,3 +67,4 @@ function open_terminal_same_cwd(client)
 	local cwd = process_get_cwd(pid)
 	awful.util.spawn_with_shell(TERMINAL_CWD .. " " .. cwd)	
 end
+
