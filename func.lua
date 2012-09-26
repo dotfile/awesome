@@ -43,7 +43,9 @@ function process_get_subproc_pid(pid)
 end
 
 
--- Open a terminal with at the same CWD
+-- Open a terminal with at the same CWD as the current 
+-- terminal client
+-- Optional arg: current client
 -- (Install this function into client keybindings)
 function open_terminal_same_cwd(client)
 	if not client then
