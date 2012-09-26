@@ -122,8 +122,8 @@ mouseTimer:add_signal("timeout", function()
 	-- Only move if hasn't been moved much. 
 	local cur = mouse.coords()
 
-	if math.abs(cur.x - mouseLastCoords.x) < 10 
-		and math.abs(cur.y - mouseLastCoords.y) < 10 then
+	if math.abs(cur.x - mouseLastCoords.x) < 4 
+		and math.abs(cur.y - mouseLastCoords.y) < 4 then
 			move = true
 	end
 
