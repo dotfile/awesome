@@ -44,6 +44,7 @@ WALLPAPER_DIR = HOMEDIR .. "/Images/wallpaper"
 BATTERY_NAME = "BAT0"
 
 MOUSE_HIDE_TIMEOUT = 10
+MOUSE_HIDE_NOMOVE_COUNT = 2
 
 --[[ ======================================
 	   Per-machine configuration switch
@@ -115,23 +116,26 @@ mouseLastCoords = {x=0, y=0}
 
 
 -- Setup mouse hiding timer
+mouseTimerCount = 0 -- Number of times mouse hasn't moved
 mouseTimer = timer { timeout = MOUSE_HIDE_TIMEOUT }
 mouseTimer:add_signal("timeout", function()
-	local doMove = false
 
 	-- Only move if hasn't been moved much. 
 	local cur = mouse.coords()
 
-	if math.abs(cur.x - mouseLastCoords.x) < 4 
-		and math.abs(cur.y - mouseLastCoords.y) < 4 then
-			move = true
+	if math.abs(cur.x - mouseLastCoords.x) < 2 
+		and math.abs(cur.y - mouseLastCoords.y) < 2 then
+			mouseTimerCount = mouseTimerCount + 1
+	else
+		mouseTimerCount = 0
 	end
 
 	mouseLastCoords.x  = cur.x
 	mouseLastCoords.y  = cur.y
 
-	if move then
+	if mouseTimerCount >= MOUSE_HIDE_NOMOVE_COUNT then
 		mouse.coords({x=9000, y=9000})
+		mouseTimerCount = 0
 	end
 
 	-- Stop timer (so no multiple instances running)

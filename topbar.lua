@@ -66,7 +66,7 @@ end
 
 -- Battery Status
 vicious.register(battext, 
-	vicious.widgets.bat, battery_status_text, 61, BATTERY_NAME)
+	vicious.widgets.bat, battery_status_text, 15, BATTERY_NAME)
 
 -- Create a wibox for each screen and add it
 mywibox = {}
