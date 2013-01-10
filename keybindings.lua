@@ -86,19 +86,19 @@ globalkeys = awful.util.table.join(
 	-- Directly choose layout
 	-- TODO: Clean up this code with a table + loop
     awful.key({ modkey, }, "1", function () 
-		awful.layout.set(awful.layout.suit.tile, nil)
+		awful.layout.set(layouts[1], nil)
 	end),
 
     awful.key({ modkey, }, "2", function () 
-		awful.layout.set(awful.layout.suit.fair, nil)
+		awful.layout.set(layouts[2], nil)
 	end),
 
     awful.key({ modkey, }, "3", function () 
-		awful.layout.set(awful.layout.suit.tile.top, nil)
+		awful.layout.set(layouts[3], nil)
 	end),
 
     awful.key({ modkey, }, "4", function () 
-		awful.layout.set(awful.layout.suit.spiral.dwindle, nil)
+		awful.layout.set(layouts[4], nil)
 	end),
 
     -- Prompt

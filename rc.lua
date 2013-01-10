@@ -23,7 +23,7 @@ socket = require("socket")	-- XXX: Need socket lib!
 	   		  AWESOME CONFIGURATION
 	 ====================================== --]]
 
-AWESOME_NUM_TAGS = 5
+AWESOME_NUM_TAGS = 1
 AWESOME_FONT = 'bitstream vera sans 10'
 AWESOME_THEME = '/themes/molokai/theme.lua'
 AWESOME_CONFDIR  = awful.util.getdir("config")
@@ -56,7 +56,7 @@ if HOSTNAME == 'vaiop' then
 
 elseif HOSTNAME == 'x120e' then
 	AWESOME_FONT = 'bitstream vera sans 12.5'
-	AWESOME_NUM_TAGS = 5
+	AWESOME_NUM_TAGS = 7
 	BATTERY_NAME = "BAT1"
 
 end
@@ -88,8 +88,8 @@ end
 -- removed frivolous/redundant ones
 layouts =
 {
-    awful.layout.suit.tile,
     awful.layout.suit.fair, 
+    awful.layout.suit.tile,
     awful.layout.suit.tile.top,
     awful.layout.suit.spiral.dwindle,
 }
