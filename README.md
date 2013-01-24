@@ -59,7 +59,8 @@ TODO
 
 My other dotfiles and configs
 -----------------------------
-* [Bash configuration](https://github.com/echelon/dotfiles-bash)
-* [Vim configuration](https://github.com/echelon/dotfiles-vim)
-* [AwesomeWM configuration](https://github.com/echelon/dotfiles-awesome) *&mdash; quite neat*
+* [AwesomeWM](https://github.com/echelon/dotfiles-awesome) *&mdash; quite neat*
+* [Bash](https://github.com/echelon/dotfiles-bash)
+* [Uzbl](https://github.com/echelon/dotfiles-uzbl)
+* [Vim](https://github.com/echelon/dotfiles-vim)
 
