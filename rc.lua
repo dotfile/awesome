@@ -56,7 +56,7 @@ if HOSTNAME == 'vaiop' then
 
 elseif HOSTNAME == 'x120e' then
 	AWESOME_FONT = 'bitstream vera sans 12.5'
-	AWESOME_NUM_TAGS = 7
+	AWESOME_NUM_TAGS = 8
 	BATTERY_NAME = "BAT1"
 
 end

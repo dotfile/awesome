@@ -96,7 +96,7 @@ theme.taglist_squares_unsel = "/usr/share/awesome/themes/zenburn/taglist/squarez
 -- }}}
 
 -- {{{ Misc
-theme.awesome_icon           = "/usr/share/awesome/themes/zenburn/awesome-icon.png"
+theme.awesome_icon           = "/home/brandon/.config/awesome/themes/molokai/triforce-icon-small.png"
 theme.menu_submenu_icon      = "/usr/share/awesome/themes/default/submenu.png"
 theme.tasklist_floating_icon = "/usr/share/awesome/themes/default/tasklist/floatingw.png"
 -- }}}
