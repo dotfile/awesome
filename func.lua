@@ -27,6 +27,12 @@ function alert(text)
 	awful.util.spawn_with_shell('notify-send "'..text..'"')
 end
 
+function alert2(text)
+    naughty.notify({ preset = naughty.config.presets.critical,
+                     title = 'alert2',
+                     text = text })
+end
+
 
 -- Get the cwd of the process pid
 function process_get_cwd(pid) 

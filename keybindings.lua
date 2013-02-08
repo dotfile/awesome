@@ -2,6 +2,7 @@
 -- KEY AND MOUSE BINDINGS 
 
 require('func')
+require('clients')
 
 -- {{{ Mouse bindings
 root.buttons(awful.util.table.join(
@@ -10,22 +11,6 @@ root.buttons(awful.util.table.join(
 	awful.button({ }, 5, awful.tag.viewprev)
 ))
 -- }}}
-
--- Switch to the next client
-function switch_client_next()
-	awful.client.focus.byidx( 1)
-	if client.focus then client.focus:raise() end
-end
-
--- Switch to the previous client
-function switch_client_prev()
-	awful.client.focus.byidx(-1)
-	if client.focus then client.focus:raise() end
-end
-
--- Move client (window) around
-function move_client_next() awful.client.swap.byidx(1) end
-function move_client_prev() awful.client.swap.byidx(-1) end
 
 -- {{{ Key bindings
 globalkeys = awful.util.table.join(
@@ -105,31 +90,6 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey }, "r", function () mypromptbox[mouse.screen]:run() end)
 )
 
--- Move windows to left workspace (tags)
-function move_window_prev_tag(c)
-	local curidx = awful.tag.getidx(c:tags()[1])
-	if curidx == 1 then
-		c:tags({screen[mouse.screen]:tags()[AWESOME_NUM_TAGS]})
-	else
-		c:tags({screen[mouse.screen]:tags()[curidx - 1]})
-	end
-	awful.tag.viewprev()
-end
-
--- Move windows to right workspace (tags)
-function move_window_next_tag(c)
-	local curidx = awful.tag.getidx(c:tags()[1])
-	if curidx == AWESOME_NUM_TAGS then
-		c:tags({screen[mouse.screen]:tags()[1]})
-	else
-		c:tags({screen[mouse.screen]:tags()[curidx + 1]})
-	end
-	awful.tag.viewnext()
-end
-
--- Kill a window 
-function kill_window(c) c:kill() end
-
 clientkeys = awful.util.table.join(
 
 	-- Spawn terminal at location
@@ -144,18 +104,19 @@ clientkeys = awful.util.table.join(
     awful.key({ modkey, }, "f", function (c) 
 		c.fullscreen = not c.fullscreen  end),
 
-	-- Kill window
-    awful.key({ modkey, "Shift"  }, "c", kill_window),
-    awful.key({ modkey, "Control"}, "c", kill_window),
+	-- Kill clients
+    awful.key({ modkey, "Shift"  }, "c", kill_client),
+    awful.key({ modkey, "Control"}, "c", kill_client),
+    awful.key({ modkey, "Control"}, "x", kill_clients_on_cur_tag),
 
 	-- Misc
 	awful.key({ modkey, "Shift"  }, "r", function (c) c:redraw() end),
     awful.key({ modkey, }, "t", function (c) 
 		c.ontop = not c.ontop end),
 
-	-- Move windows to left/right workspaces (tags)
-	awful.key({ modkey, "Control"	}, "Left",  move_window_prev_tag),
-	awful.key({ modkey, "Control"	}, "Right", move_window_next_tag)
+	-- Move clients to left/right tags
+	awful.key({ modkey, "Control"	}, "Left",  move_client_prev_tag),
+	awful.key({ modkey, "Control"	}, "Right", move_client_next_tag)
 )
 
 -- Compute the maximum number of digit we need
