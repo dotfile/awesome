@@ -3,6 +3,9 @@
 		  Signal Handler Installation	
 	 ====================================== --]]
 
+-- XXX: See signals doc,
+-- http://awesome.naquadah.org/wiki/Signals
+
 -- New Client Spawns 
 -- When a new client window appears, hint it, etc.
 client.add_signal("manage", function (c, startup)
@@ -30,3 +33,6 @@ client.add_signal("unfocus", function(c)
 	c.border_color = beautiful.border_normal 
 end)
 
+-- New client added
+--client.add_signal("new", function() end)
+--

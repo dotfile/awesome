@@ -2,6 +2,11 @@
 -- Copyright 2013 Brandon Thomas
 
 
+-- Hide a client
+function hide_client(c)
+	c.minimized = true
+end
+
 -- Kill a client
 function kill_client(c) 
 	c:kill() 
@@ -14,9 +19,33 @@ function kill_clients_on_tag(t)
 	end
 end
 
+-- Minimize all clients on tag
+function minimize_clients_on_tag(t)
+	for ck, cv in ipairs(t.clients(t)) do
+		cv.minimized = true
+	end
+end
+
+function unminimize_clients_on_tag(t)
+	for ck, cv in ipairs(t.clients(t)) do
+		if cv.minimized then
+			cv:raise()
+		end
+		cv.minimized = false
+	end
+end
+
 -- Kill all clients on the current tag
 function kill_clients_on_cur_tag()
 	kill_clients_on_tag(awful.tag.selected(mouse.screen))
+end
+
+function minimize_clients_on_cur_tag()
+	minimize_clients_on_tag(awful.tag.selected(mouse.screen))
+end
+
+function unminimize_clients_on_cur_tag()
+	unminimize_clients_on_tag(awful.tag.selected(mouse.screen))
 end
 
 -- Switch to the next client
@@ -32,11 +61,11 @@ function switch_client_prev()
 end
 
 -- Move client around current tag
-function move_client_next() 
+function swap_client_next() 
 	awful.client.swap.byidx(1) 
 end
 
-function move_client_prev() 
+function swap_client_prev() 
 	awful.client.swap.byidx(-1) 
 end
 

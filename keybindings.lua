@@ -38,10 +38,10 @@ globalkeys = awful.util.table.join(
 	---
 	--- Move Window Around Layout: Mod+Shift+j, Mod+Shift+k
 	---
-    awful.key({ modkey, "Shift"   }, "j", move_client_next),
-    awful.key({ modkey, "Control" }, "j", move_client_next),
-	awful.key({ modkey, "Shift"   }, "k", move_client_prev),
-    awful.key({ modkey, "Control" }, "k", move_client_prev),
+    awful.key({ modkey, "Shift"   }, "j", swap_client_next),
+    awful.key({ modkey, "Control" }, "j", swap_client_next),
+	awful.key({ modkey, "Shift"   }, "k", swap_client_prev),
+    awful.key({ modkey, "Control" }, "k", swap_client_prev),
 
 	awful.key({ modkey, }, "u", awful.client.urgent.jumpto),
     awful.key({ modkey, }, "Tab", function ()
@@ -61,6 +61,7 @@ globalkeys = awful.util.table.join(
 	-- Standard Program
     awful.key({ modkey, "Control" }, "r", awesome.restart),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit),
+    awful.key({ modkey, "Control"   }, "BackSpace", awesome.quit),
 
 	---
 	--- Change Pane Size: Mod+h, Mod+l
@@ -92,6 +93,7 @@ globalkeys = awful.util.table.join(
 
 clientkeys = awful.util.table.join(
 
+
 	-- Spawn terminal at location
 	-- NOTE: Not necessary anymore w/ global binding
     --awful.key({ modkey, }, "o", function(c)
@@ -109,14 +111,18 @@ clientkeys = awful.util.table.join(
     awful.key({ modkey, "Control"}, "c", kill_client),
     awful.key({ modkey, "Control"}, "x", kill_clients_on_cur_tag),
 
+	-- Move clients to left/right tags
+	awful.key({ modkey, "Control"	}, "Left",  move_client_prev_tag),
+	awful.key({ modkey, "Control"	}, "Right", move_client_next_tag),
+
+	-- Show/hide
+	awful.key({ modkey, }, "m", hide_client),
+    awful.key({ modkey, "Control"}, "m", unminimize_clients_on_cur_tag),
+
 	-- Misc
 	awful.key({ modkey, "Shift"  }, "r", function (c) c:redraw() end),
     awful.key({ modkey, }, "t", function (c) 
-		c.ontop = not c.ontop end),
-
-	-- Move clients to left/right tags
-	awful.key({ modkey, "Control"	}, "Left",  move_client_prev_tag),
-	awful.key({ modkey, "Control"	}, "Right", move_client_next_tag)
+		c.ontop = not c.ontop end)
 )
 
 -- Compute the maximum number of digit we need
@@ -128,9 +134,15 @@ end
 ---
 --- Allow mouse to raise (select) window
 clientbuttons = awful.util.table.join(
-    awful.button({ }, 1, function (c) client.focus = c; c:raise() end),
+    --awful.button({ }, 1, function() end), -- Left Click
+    awful.button({ }, 2, function() end), -- Middle Click
+    awful.button({ }, 3, function() end), -- Right Click
+    awful.button({ }, 1, function (c) 
+		client.focus = c; c:raise() 
+	end),
     awful.button({ modkey }, 1, awful.mouse.client.move),
-    awful.button({ modkey }, 3, awful.mouse.client.resize))
+    awful.button({ modkey }, 3, awful.mouse.client.resize)
+)
 
 -- Set keys
 root.keys(globalkeys)

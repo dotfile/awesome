@@ -36,10 +36,10 @@ modkey   = "Mod4"
 
 TERMINAL = "urxvt"
 TERMINAL_CWD = "urxvt -cd"
-BROWSER = "chromium-browser"
+BROWSER = "chrome"
 EDITOR = os.getenv("EDITOR") or "vim"
 EDITOR_CMD = TERMINAL .. " -e " .. EDITOR
-WALLPAPER_DIR = HOMEDIR .. "/Images/wallpaper"
+WALLPAPER_DIR = HOMEDIR .. "/Images/wallpaper-nature"
 
 BATTERY_NAME = "BAT0"
 
@@ -113,7 +113,6 @@ require("signals")
 
 -- Last known coordinates of the mouse
 mouseLastCoords = {x=0, y=0}
-
 
 -- Setup mouse hiding timer
 mouseTimerCount = 0 -- Number of times mouse hasn't moved
