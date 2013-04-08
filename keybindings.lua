@@ -66,8 +66,8 @@ globalkeys = awful.util.table.join(
 	---
 	--- Change Pane Size: Mod+h, Mod+l
 	---
-    awful.key({ modkey, }, "l", function () awful.tag.incmwfact( 0.05) end),
-    awful.key({ modkey, }, "h", function () awful.tag.incmwfact(-0.05) end),
+    awful.key({ modkey, }, "l", function () awful.tag.incmwfact( 0.03) end),
+    awful.key({ modkey, }, "h", function () awful.tag.incmwfact(-0.03) end),
 
 	-- Directly choose layout
 	-- TODO: Clean up this code with a table + loop
