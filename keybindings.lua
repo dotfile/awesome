@@ -88,7 +88,19 @@ globalkeys = awful.util.table.join(
 	end),
 
     -- Prompt
-    awful.key({ modkey }, "r", function () mypromptbox[mouse.screen]:run() end)
+    awful.key({ modkey }, "r", function () mypromptbox[mouse.screen]:run() end),
+
+	-- Volume
+
+	awful.key({ }, "XF86AudioRaiseVolume", function()
+		awful.util.spawn_with_shell("pactl set-sink-mute 1 0 && pactl set-sink-volume 1 -- +5%", false)
+	end),
+	awful.key({ }, "XF86AudioLowerVolume", function()
+		awful.util.spawn_with_shell("pactl set-sink-volume 1 -- -5%", false)
+	end),
+	awful.key({ }, "XF86AudioMute", function()
+		awful.util.spawn_with_shell("pactl set-sink-mute 1 `((pactl list sinks | grep -q Mute:.no > /dev/null) && echo 1) || echo 0`", false)
+	end)
 )
 
 clientkeys = awful.util.table.join(
