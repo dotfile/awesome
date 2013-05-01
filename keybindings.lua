@@ -18,7 +18,7 @@ globalkeys = awful.util.table.join(
 	---
 	--- Lock screen: Mod+Ctrl+Shift+l
 	---
-	awful.key({ modkey , "Control"}, "l", 
+	awful.key({ modkey , "Control", "Shift"}, "l", 
 		function(c) 
 			awful.util.spawn(CMD_LOCK) 
 		end),
@@ -74,6 +74,10 @@ globalkeys = awful.util.table.join(
 	---
     awful.key({ modkey, }, "l", function () awful.tag.incmwfact( 0.03) end),
     awful.key({ modkey, }, "h", function () awful.tag.incmwfact(-0.03) end),
+    awful.key({ modkey, "Control" }, "h", function () awful.tag.incnmaster(1) end),
+    awful.key({ modkey, "Control" }, "l", function () awful.tag.incnmaster(-1) end),
+    awful.key({ modkey, "Shift" }, "h", function () awful.tag.incncol(1) end),
+    awful.key({ modkey, "Shift" }, "l", function () awful.tag.incncol(-1) end),
 
 	-- Directly choose layout
 	-- TODO: Clean up this code with a table + loop
