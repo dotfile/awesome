@@ -58,6 +58,12 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Control" }, "Return", function () 
 		awful.util.spawn(BROWSER) end),
 
+    awful.key({ modkey, }, "F1", function () 
+		awful.util.spawn('gnome-calculator') end),
+
+    awful.key({ modkey, }, "F2", function () 
+		awful.util.spawn('gcolor2') end),
+
 	-- Standard Program
     awful.key({ modkey, "Control" }, "r", awesome.restart),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit),
@@ -91,7 +97,6 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey }, "r", function () mypromptbox[mouse.screen]:run() end),
 
 	-- Volume
-
 	awful.key({ }, "XF86AudioRaiseVolume", function()
 		awful.util.spawn_with_shell("pactl set-sink-mute 1 0 && pactl set-sink-volume 1 -- +5%", false)
 	end),
