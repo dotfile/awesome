@@ -97,6 +97,10 @@ globalkeys = awful.util.table.join(
 		awful.layout.set(layouts[4], nil)
 	end),
 
+    awful.key({ modkey, }, "5", function () 
+		awful.layout.set(layouts[5], nil)
+	end),
+
     -- Prompt
     awful.key({ modkey }, "r", function () mypromptbox[mouse.screen]:run() end),
 
