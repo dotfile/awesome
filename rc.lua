@@ -37,6 +37,7 @@ modkey   = "Mod4"
 TERMINAL = "urxvt"
 TERMINAL_CWD = "urxvt -cd"
 BROWSER = "chrome"
+BROWSER2 = "firefox"
 EDITOR = os.getenv("EDITOR") or "vim"
 EDITOR_CMD = TERMINAL .. " -e " .. EDITOR
 WALLPAPER_DIR = HOMEDIR .. "/Images/wallpaper-nature"

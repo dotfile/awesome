@@ -58,6 +58,9 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Control" }, "Return", function () 
 		awful.util.spawn(BROWSER) end),
 
+    awful.key({ modkey, "Control" }, "\\", function () 
+		awful.util.spawn(BROWSER2) end),
+
     awful.key({ modkey, }, "F1", function () 
 		awful.util.spawn('gnome-calculator') end),
 
@@ -67,7 +70,8 @@ globalkeys = awful.util.table.join(
 	-- Standard Program
     awful.key({ modkey, "Control" }, "r", awesome.restart),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit),
-    awful.key({ modkey, "Control"   }, "BackSpace", awesome.quit),
+    awful.key({ modkey, "Control", "Shift"  }, "BackSpace", 
+		awesome.quit),
 
 	---
 	--- Change Pane Size: Mod+h, Mod+l
