@@ -26,23 +26,23 @@ socket = require("socket")	-- XXX: Need socket lib!
 AWESOME_NUM_TAGS = 1
 AWESOME_FONT = 'bitstream vera sans 10'
 AWESOME_THEME = '/themes/molokai/theme.lua'
-AWESOME_CONFDIR  = awful.util.getdir("config")
+AWESOME_CONFDIR  = awful.util.getdir('config')
 
 HOSTNAME = socket.dns.gethostname()
-HOMEDIR  = os.getenv("HOME")
-CONFDIR  = awful.util.getdir("config") -- TODO: Deprecate
-CMD_LOCK = "xlock -mode rain"
-modkey   = "Mod4"
+HOMEDIR  = os.getenv('HOME')
+CONFDIR  = awful.util.getdir('config') -- TODO: Deprecate
+CMD_LOCK = 'xlock -mode rain'
+modkey   = 'Mod4'
 
-TERMINAL = "urxvt"
-TERMINAL_CWD = "urxvt -cd"
-BROWSER = "chrome"
-BROWSER2 = "firefox"
-EDITOR = os.getenv("EDITOR") or "vim"
-EDITOR_CMD = TERMINAL .. " -e " .. EDITOR
-WALLPAPER_DIR = HOMEDIR .. "/Images/wallpaper-nature"
+TERMINAL = 'urxvt'
+TERMINAL_CWD = 'urxvt -cd'
+BROWSER = 'chrome'
+BROWSER2 = 'firefox'
+EDITOR = os.getenv('EDITOR') or 'vim'
+EDITOR_CMD = TERMINAL .. ' -e ' .. EDITOR
+WALLPAPER_DIR = HOMEDIR .. '/Images/wallpaper-nature'
 
-BATTERY_NAME = "BAT0"
+BATTERY_NAME = 'BAT0'
 
 MOUSE_HIDE_TIMEOUT = 10
 MOUSE_HIDE_NOMOVE_COUNT = 2
@@ -54,11 +54,12 @@ MOUSE_HIDE_NOMOVE_COUNT = 2
 if HOSTNAME == 'vaiop' then
 	AWESOME_FONT = 'ubuntu 13'
 	AWESOME_NUM_TAGS = 4
+	BROWSER = 'chromium-browser'
 
 elseif HOSTNAME == 'x120e' then
 	AWESOME_FONT = 'bitstream vera sans 12.5'
 	AWESOME_NUM_TAGS = 8
-	BATTERY_NAME = "BAT1"
+	BATTERY_NAME = 'BAT1'
 
 end
 
