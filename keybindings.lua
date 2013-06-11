@@ -52,20 +52,26 @@ globalkeys = awful.util.table.join(
 	end),
 
     -- Launch Programs
-    awful.key({ modkey, }, "Return", function () 
+    awful.key({ modkey, }, 'Return', function () 
 		open_terminal_same_cwd(c) end),
 
-    awful.key({ modkey, "Control" }, "Return", function () 
+    awful.key({ modkey, 'Control' }, 'Return', function () 
 		awful.util.spawn(BROWSER) end),
 
-    awful.key({ modkey, "Control" }, "\\", function () 
+    awful.key({ modkey, 'Control' }, "\\", function () 
 		awful.util.spawn(BROWSER2) end),
 
-    awful.key({ modkey, }, "F1", function () 
+    awful.key({ modkey, }, 'F1', function () 
 		awful.util.spawn('gnome-calculator') end),
 
-    awful.key({ modkey, }, "F2", function () 
+    awful.key({ modkey, }, 'F2', function () 
 		awful.util.spawn('gcolor2') end),
+
+    awful.key({ }, 'Print', function()
+		awful.util.spawn('gnome-screenshot') end),
+
+    --awful.key({        }, "Print",
+    --     function () awful.util.spawn_with_shell("DATE=`date +%d%m%Y_%H%M%S`; xsnap -nogui -file $HOME/Temp/xsnap$DATE") end),
 
 	-- Standard Program
     awful.key({ modkey, "Control" }, "r", awesome.restart),
