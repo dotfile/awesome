@@ -34,10 +34,11 @@ beautiful.widget_bat = CONFDIR .. "/themes/icons/zenburn-bat.png"
 
 -- Battery indicator
 require("vicious")
-baticon = widget({ type = "imagebox" })
-baticon.image = image(beautiful.widget_bat)
-battext = widget({ type = "textbox", name = "battext" })
 
+-- Debug by placing a message in the battery text.
+function debug(text)
+	battext.text = text
+end
 -- Battery indicator coloring
 function battery_status_text(widget, args)
 	local perc = args[2]
@@ -59,14 +60,17 @@ function battery_status_text(widget, args)
 	return '<span color="'..color..'">'..ch..perc..'%</span> '
 end
 
--- Debug by placing a message in the battery text.
-function debug(text)
-	battext.text = text
-end
+baticon = nil
 
--- Battery Status
-vicious.register(battext, 
-	vicious.widgets.bat, battery_status_text, 15, BATTERY_NAME)
+if BATTERY_NAME then
+	baticon = widget({ type = "imagebox" })
+	baticon.image = image(beautiful.widget_bat)
+	battext = widget({ type = "textbox", name = "battext" })
+
+	-- Battery Status
+	vicious.register(battext, 
+		vicious.widgets.bat, battery_status_text, 15, BATTERY_NAME)
+end
 
 -- Create a wibox for each screen and add it
 mywibox = {}

@@ -14,8 +14,12 @@ function batt_is_charging()
 	local cmd = 'upower -i '..device..' | grep state'
 
 	local fp = io.popen(cmd)
+	local result = fp:read()
+	if not result then 
+		return false
+	end
 
-	for r in string.gmatch(fp:read(), 'discharging') do
+	for r in string.gmatch(result, 'discharging') do
 		return false 
 	end	
 	return true 

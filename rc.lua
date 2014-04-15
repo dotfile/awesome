@@ -40,9 +40,9 @@ BROWSER = 'chrome'
 BROWSER2 = 'firefox'
 EDITOR = os.getenv('EDITOR') or 'vim'
 EDITOR_CMD = TERMINAL .. ' -e ' .. EDITOR
-WALLPAPER_DIR = HOMEDIR .. '/Images/wallpaper-nature'
+WALLPAPER_DIR = HOMEDIR .. '/Images/wallpaper'
 
-BATTERY_NAME = 'BAT0'
+BATTERY_NAME = nil
 
 MOUSE_HIDE_TIMEOUT = 10
 MOUSE_HIDE_NOMOVE_COUNT = 2
@@ -51,15 +51,21 @@ MOUSE_HIDE_NOMOVE_COUNT = 2
 	   Per-machine configuration switch
 	 ====================================== --]]
 
-if HOSTNAME == 'vaiop' then
-	AWESOME_FONT = 'ubuntu 13'
-	AWESOME_NUM_TAGS = 4
-	BROWSER = 'chromium-browser'
+if HOSTNAME == 'darwin' then
+	BROWSER = 'firefox'
+	AWESOME_FONT = 'droid sans mono 10.5'
+	AWESOME_NUM_TAGS = 12
 
 elseif HOSTNAME == 'x120e' then
 	AWESOME_FONT = 'bitstream vera sans 12.5'
 	AWESOME_NUM_TAGS = 12
 	BATTERY_NAME = 'BAT1'
+
+elseif HOSTNAME == 'vaiop' then
+	AWESOME_FONT = 'ubuntu 13'
+	AWESOME_NUM_TAGS = 4
+	BROWSER = 'chromium-browser'
+	BATTERY_NAME = 'BAT0'
 
 end
 
