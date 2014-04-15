@@ -94,14 +94,22 @@ end
 -- Table of layouts. 
 -- Order matters for awful.layout.inc
 -- removed frivolous/redundant ones
-layouts =
-{
+layouts = {
     awful.layout.suit.fair, 
     awful.layout.suit.tile,
     awful.layout.suit.tile.top,
     awful.layout.suit.fair.horizontal, 
     awful.layout.suit.spiral.dwindle,
 }
+
+if HOSTNAME == 'darwin' then
+	layouts = {
+		awful.layout.suit.tile.right,
+		awful.layout.suit.tile.bottom,
+		awful.layout.suit.spiral,
+		awful.layout.suit.fair.horizontal, 
+	}
+end
 
 -- Build a tag table which hold all screen tags.
 -- Each screen has its own tag table.
